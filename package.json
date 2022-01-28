@@ -1,0 +1,25 @@
+{
+  "name": "mototourwally",
+  "version": "1.0.0",
+  "description": "MERN project for Moto tours",
+  "main": "index.js",
+  "engines": {
+    "node": "^16.13.0",
+    "npm": "8.1.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "start index.js",
+    "dev":"nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TaniuOp/MotoTourWally.git"
+  },
+  "author": "TaniuOp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TaniuOp/MotoTourWally/issues"
+  },
+  "homepage": "https://github.com/TaniuOp/MotoTourWally#readme"
+}
