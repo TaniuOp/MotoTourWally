@@ -1,10 +1,18 @@
 // MODULES 
 const Tour = require('../models/tourModel')
 
-// CONTROLLERS (controller functions) 
+// CONTROLLERS (Tours controller functions) 
 exports.getAllTours = async (req, res) => {
     try {
-        const getTours = await Tour.find();
+
+        // Filtering with query params  (key=value --> page=1)
+
+        // Create a req.query copy and delete query params not included in the object itself
+        const queryObject = {...req.query}
+        const excludeFields = ['page', 'sort', 'limit', 'fields']
+        excludeFields.forEach(element => delete queryObject[element])
+        console.log(queryObject)
+        const getTours = await Tour.find(queryObject);
         res.status(200).json({
             status: 'success',
             results: getTours.length,
