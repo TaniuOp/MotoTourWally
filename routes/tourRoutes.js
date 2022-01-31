@@ -1,20 +1,29 @@
 // MODULES 
-const router = require('express').Router
+const router = require('express').Router()
 
 // Import controllers 
 const tourController = require('../controllers/tourContoller')
-const API_URL = '/api/v1/tours'
 
 
-// ROUTER METHOD 
+// ROUTER METHODS 
+
 // Get al tours and Create tour 
-router.route.get(API_URL, tourController.getAllTours).post(API_URL, tourController.createTour)
+router.route('/').get(tourController.getAllTours).post(tourController.createTour)
+
 // Edit , update and delete Tour 
 router
     .route('/:id')
     .get(tourController.getTour)
     .patch(tourController.updateTour)
     .delete(tourController.deleteTour)
+
+module.exports = router; 
+
+
+
+
+
+
 
 // Create tour 
     // router.route.post(API_URL, tourController.createTour)
@@ -25,4 +34,3 @@ router
 // Delete tour 
     // router.route.delete(`${API_URL}/:id`, tourController.deleteTour)
 
-module.exports = router; 
