@@ -3,23 +3,17 @@ const mongoose = require('mongoose');
 
 // SCHEMA
 const tourSchema = new mongoose.Schema({
-  name: {
+  tourname: {
     type: String,
-    required: true,
-    unique: true,
-    trim: true,
   },
   duration: {
     type: Number,
-    required: true,
   },
   maxGroupSize: {
     type: Number,
-    required: true,
   },
   difficulty: {
     type: String,
-    required: true,
   },
   ratingsAverage: {
     type: Number,
@@ -31,21 +25,17 @@ const tourSchema = new mongoose.Schema({
   },
   price: {
     type: Number,
-    required: true,
   },
   summary: {
     type: String,
-    required: true,
     trim: true,
   },
   description: {
     type: String,
-    required: true,
     trim: true,
   },
   imageCover: {
     type: String,
-    required: true,
   },
   images: [String],
   createdAt: {
