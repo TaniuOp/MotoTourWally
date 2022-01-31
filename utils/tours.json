@@ -1,0 +1,108 @@
+[
+    {
+      "name": "MONZA-MISANO",
+      "duration": 10,
+      "maxGroupSize": 25,
+      "difficulty": "easy",
+      "ratingsAverage": 4.7,
+      "ratingsQuantity": 37,
+      "price": 3450,
+      "summary": "Austria, Misano, san Marino, Suiza",
+      "description": "Una vez mas se da el doble fin de semana de F1 y Motogp, lo máximo de la velocidad en carreras a motor !!!!. Asistir a estos dos grandes eventos y entre las fechas dar una vuelta por los lugares espectaculares de los Alpes Italianos, Suizos y Austriacos, es una oportunidad que todo amante de las motos no puede perderse. Y manejar moto por estas carreteras de ensueño es algo que no tiene precio. Motos disponibles de la gama Bmw, 650-700-800-1200-1600. Ducati Multistrada. Con tiempo se pueden conseguir otras marcas. Posibilidad de llevar camioneta de acompañamiento, cuyo costo es aparte. Recorrido sujeto a modificaciones según la disponibilidad hotelera.",
+      "imageCover": "https://www.mototourswally.com/wp-content/uploads/2015/04/554262_435382349857256_1504391543_n.jpg",
+      "images": [
+        "https://www.mototourswally.com/wp-content/uploads/2015/04/487016_435382169857274_945197076_n.jpg",
+        "https://www.mototourswally.com/wp-content/uploads/2015/04/302519_435383953190429_303290785_n.jpg",
+        "https://www.mototourswally.com/wp-content/uploads/2015/04/400820_435383886523769_1652511901_n.jpg"
+      ],
+      "startDates": [
+        "2022-04-25,10:00",
+        "2022-07-20,10:00",
+        "2022-10-05,10:00"
+      ]
+    },
+    {
+      "name": "Grandes Alpes, Mont Blanc",
+      "duration": 12,
+      "maxGroupSize": 15,
+      "difficulty": "medium",
+      "ratingsAverage": 4.5,
+      "ratingsQuantity": 24,
+      "price": 5200,
+      "summary": "Francia, Italia, Suiza",
+      "description": "Un itinerario nuevo, que cruza Suiza, Francia, Austria e Italia, cabalgando los Alpes y visitando la  montaña mas altas de Europa,  el Mont Blanc. Llegaremos  a Chamonix, desde donde se puede subir al Aguille du Midi, frente al glaciar del Mont Blanc. Se le llega mediante uno de los teleféricos mas empinados del mundo, una experiencia escalofriante….y donde podremos visitar las cuevas de hielo. Muy interesante. Haremos algunas de las etapas mas emblemáticas del Tour de France, como el Col du Galibier, el Iseran, el Izoard, donde podremos apreciar lo bueno que son esos ciclistas que escalan esas rutas con extrema facilidad . Serán once días de manejo bien interesante, recorreremos el famoso 8 Suizo, el Grossklockner, las Dolomitas, un circuito de ensueño para manejar moto. Y disfrutaremos de unos panoramas espectaculares. ",
+      "imageCover": "https://www.mototourswally.com/wp-content/uploads/2015/04/20130623_055623.jpg",
+      "images": [
+        "https://www.mototourswally.com/wp-content/uploads/2015/04/20130625_0917391.jpg",
+        "https://www.mototourswally.com/wp-content/uploads/2015/04/20130623_055121.jpg",
+        "https://www.mototourswally.com/wp-content/uploads/2015/04/20130623_071555.jpg"
+      ],
+      "startDates": [
+        "2022-05-25,10:00",
+        "2022-08-20,10:00"
+      ]
+    },
+    {
+      "name": "Kenya",
+      "duration": 10,
+      "maxGroupSize": 8,
+      "difficulty": "hard",
+      "ratingsAverage": 4.9,
+      "ratingsQuantity": 30,
+      "price": 5450,
+      "summary": "¡África! un nuevo continente nos espera, con sus paisajes increíbles, y su fauna única en el mundo! Nos daremos un banquete viendo todo tipo de animales, que solo conocemos por la televisión o por algún zoológico!",
+      "description": "En este viaje también disfrutaremos de bellas rutas por las montañas de Kenya, casi todo asfalto, y las pocas pistas de tierra son de fácil conducción. Las motos son las confiables y livianas Bmw Gs 650, que nos harán disfrutar a plenitud  de las rutas. Llegaremos a Nairobi, la capital de Kenya, y en el aeropuerto tendremos que sacar la visa de turista, que tiene un costo de unos 50 $ aproximadamente. Hay que recordar que para tal fin se necesita que el pasaporte tenga una validez de almeno 6 meses. Luego de haber pasado un día tan emocionante, volveremos a montarnos en nuestras motos.  Después del fabuloso día de safari, hace falta mas emoción.  Nuestro destino de hoy será el lago Naivasha, transitaremos por por la capital Masai de Narok, luego rodearemos el volcán Suswa, seguiremos por unos 80 km te tierra, luego 100 km de asfalto, en la noche cena en el hotel.",
+      "imageCover": "https://www.mototourswally.com/wp-content/uploads/2019/10/IMG-20190607-WA0119.jpg",
+      "images": [
+        "https://www.mototourswally.com/wp-content/uploads/2019/10/IMG-20190607-WA0118.jpg",
+        "https://www.mototourswally.com/wp-content/uploads/2019/10/CocheTrailerNaivasha_1.jpg",
+        "https://www.mototourswally.com/wp-content/uploads/2019/10/IMG-20190607-WA0012.jpg"
+      ],
+      "startDates": [
+        "2022-07-05,10:00"
+      ]
+    },
+    {
+      "name": "Usa Wild West Grand Tour",
+      "duration": 15,
+      "maxGroupSize": 18,
+      "difficulty": "easy",
+      "ratingsAverage": 4.3,
+      "ratingsQuantity": 22,
+      "price": 5950,
+      "summary": "Un gran recorrido de 4700Km desde Los Ángeles hasta las Vegas",
+      "description": "Desde Palm Springs rodaremos en las tranquilas carreteras americanas, saldremos de California para entrar a Nevada, disfrutando los bonitos aunque desiertos paisajes, el Joshua Tree National Park, árbol típico de los desiertos americanos, hoy conoceremos el primer tramo de la legendaria Route 66 , llegada a Laughlin en la tarde. Seguiremos por la famosa Route 66 , Laughlin , Seligman pueblos que se quedaron en el tiempo, llegaremos a Kingman, considerado el corazón de la Carretera Madre, seguiremos por esa altiplanicie a casi 2000 metros de altura, llegada a Tusayan, a orillas del Gran Canyon, territorio de los indios Navajos, vista del atardecer en el famoso Canyon. ",
+      "imageCover": "https://www.mototourswally.com/wp-content/uploads/2015/10/20150618_222628.jpg",
+      "images": [
+        "https://www.mototourswally.com/wp-content/uploads/2015/10/20150618_213731.jpg",
+        "https://www.mototourswally.com/wp-content/uploads/2015/10/20150618_221213.jpg",
+        "https://www.mototourswally.com/wp-content/uploads/2015/10/20150618_215431.jpg"
+      ],
+      "startDates": [
+        "2022-02-10,10:00",
+        "2022-04-10,10:00",
+        "2022-16-10,10:00"
+      ]
+    },
+    {
+      "name": "PERU",
+      "duration": 14,
+      "maxGroupSize": 25,
+      "difficulty": "easy",
+      "ratingsAverage": 4.8,
+      "ratingsQuantity": 24,
+      "price": 4680,
+      "summary": "Nos dirigiremos hacia la costa del Océano Pacifico, por una carretera espectacular, quizás la mas bella del Perú para manejar moto",
+      "description": "Perú es un País muy bello, con vestigios de arquitectura realmente asombrosos. La época Inca ha dejado un legado de historia muy interesante, se pueden ver en los Museos objetos muy raros y bien conservados de esa época. Además de disfrutar a lo largo del recorrido de paisajes realmente únicos, con cruces a casi 5000 metros sobre el nivel del mar. Y la vista de picos nevados, resaltando sobre el increíble cielo azul, son imágenes que se graban en los ojos de manera indeleble. Este viaje es dedicado a los aventureros que no sufran el mal de páramo ( o de altura) ya que buena parte del recorrido se desarrolla a más de 3000 metros sndm. Y hay que tener indumentaria para frío ya que a esas alturas es fácil conseguir nieve y por ende temperaturas cercanas a los 0 grados. Conoceremos el Machu Picchu, el lago Titicaca, la Sierra Peruana, las misteriosas lineas de Nazca, el Cañón del Colca, y manejaremos por excelentes rutas. Una experiencia muy interesante.",
+      "imageCover": "https://www.mototourswally.com/wp-content/uploads/2015/10/0671.jpg",
+      "images": [
+        "https://www.mototourswally.com/wp-content/uploads/2015/10/080.jpg",
+        "https://www.mototourswally.com/wp-content/uploads/2015/10/092.jpg",
+        "https://www.mototourswally.com/wp-content/uploads/2015/10/102.jpg"
+      ],
+      "startDates": [
+        "2022-03-14,10:00",
+        "2022-07-26,10:00"
+      ]
+    }
+  ]
