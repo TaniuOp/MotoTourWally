@@ -8,9 +8,10 @@
     "npm": "8.1.4"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "dev": "nodemon server.js"
+    "server": "node server.js",
+    "client": "npm start --prefix client",
+    "start": "node server.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -25,5 +26,10 @@
   "dependencies": {
     "express": "^4.17.2",
     "mongoose": "^6.1.8"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^15.0.0"
   }
 }

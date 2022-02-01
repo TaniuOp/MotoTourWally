@@ -1,0 +1,40 @@
+.header {
+    position: sticky;
+    top: 0;
+    background-color: $secondary-color;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 100%;
+    height: 50px;
+    justify-content: space-between;
+    margin-bottom: 45px;
+}
+
+.header > img{
+    padding-left: 15px;
+}
+
+.header-title {
+        flex-basis: 90%;
+}
+.header-title > h1 {
+    font-size: 50px;
+}
+
+.dark{
+    background-color: rgb(72, 30, 126);
+    color:white;
+}
+
+img{
+    width:80%;
+    margin-top: 0;
+}
+
+.App-logo {
+    height: 6vmin;
+    pointer-events: none;
+    margin: 1%
+  }

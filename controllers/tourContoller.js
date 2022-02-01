@@ -1,53 +1,15 @@
 // MODULES 
 const Tour = require('../models/tourModel')
+const ApiFeatures = require('../utils/apiFeatures')
 
 // CONTROLLERS (Tours controller functions) 
 exports.getAllTours = async (req, res) => {
     try {
-
-        // Filtering with query params  (key=value --> page=1)
-
-        // 1- Basic filtering: Create a req.query copy and delete query params not included in the object itself
-        const queryObject = {...req.query}
-        const excludeFields = ['page', 'sort', 'limit', 'fields']
-        excludeFields.forEach(element => delete queryObject[element])
-
-        // 2- Advance filtering: using JS methods 
-        let queryString = JSON.stringify(queryObject)
-
-            // mongosse operation to replace words
-            queryString = queryString.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`); // Mongoose Regular expresion 
-        
-        // Database search (Query)
-        let searchTours = Tour.find(JSON.parse(queryString))
-
-        // 3- Sort list 
-        if (req.query.sort) {
-            const sortBy = req.query.sort.split(',').join('')
-            searchTours = searchTours.sort(sortBy) //mongoose method "sort"
-        } 
-
-        // 4- Field limit (just the fields required)
-        if (req.query.fields) {
-            const limitFields = req.query.fields.split(',').join('')
-            searchTours = searchTours.select(limitFields) //mongoose method "select"
-        } 
-
-        // 5- Pagination 
-        const page = req.query.page || 1 ; 
-        const limitResults = req.query.limit || 6 ;    
-        const skip = (page - 1) * limitResults; 
-        searchTours = searchTours.limit(limitResults).skip(skip) //mongoose method "limit"
-
-        if (req.query.page){
-            const totalTours = await Tour.countDocuments();
-            if (skip >= totalTours){
-                throw new Error("This page does not exist")
-            }
-        }
-
         // Execute conection and Query to filter / sort list / limit 
-        const getTours = await searchTours;
+        const features = new ApiFeatures(Tour.find(), req.query).filter().sort().limitFields().paginate()
+
+        // Execute Query 
+        const getTours = await features.query;
 
         res.status(200).json({
             status: 'success',

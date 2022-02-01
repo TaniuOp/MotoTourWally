@@ -2,17 +2,22 @@
 const express = require('express')
 const app = express()
 const tourRoutes = require('./routes/tourRoutes')
+const cors = require('cors')
 
 // MIDDLEWARES
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+
+// Welcome - localhost 
+app.get('/', (req, res) => {
+    res.status(200).send("Hello from the MotoTour server")
+})
+
 // ROUTES 
 app.use('/api/v1/tours', tourRoutes)
+app.use(cors())
 
-// app.get('/', (req, res) => {
-//     res.status(200).send("Hello from the MotoTour server")
-// })
 
 
 module.exports = app 
