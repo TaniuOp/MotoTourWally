@@ -35,7 +35,7 @@ exports.getAllTours = async (req, res) => {
 
         // 5- Pagination 
         const page = req.query.page || 1 ; 
-        const limitResults = req.query.limit || 2 ;    
+        const limitResults = req.query.limit || 6 ;    
         const skip = (page - 1) * limitResults; 
         searchTours = searchTours.limit(limitResults).skip(skip) //mongoose method "limit"
 
