@@ -4,8 +4,13 @@ const router = require('express').Router()
 // Import controllers 
 const tourController = require('../controllers/tourContoller')
 
+// Import middleware 
+const topTours = require('../middleware/topTours')
 
 // ROUTER METHODS 
+
+// Get top tours (first apply top tours filter and then get all tours with that filter)
+router.route('/toptours').get(topTours.getTopTours, tourController.getAllTours)
 
 // Get al tours and Create tour 
 router.route('/').get(tourController.getAllTours).post(tourController.createTour)
