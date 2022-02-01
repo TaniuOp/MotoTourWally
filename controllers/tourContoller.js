@@ -18,7 +18,7 @@ exports.getAllTours = async (req, res) => {
             // mongosse operation to replace words
             queryString = queryString.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`); // Mongoose Regular expresion 
         
-        // Database search 
+        // Database search (Query)
         let searchTours = Tour.find(JSON.parse(queryString))
 
         // 3- Sort list 
