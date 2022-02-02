@@ -28,6 +28,10 @@ const userSchema = new mongoose.Schema({
     type: 'Boolean',
     default: false,
   },
+  userRole: {
+    type: 'String',
+    default: 'user',
+  },
   password: {
     type: 'String',
     required: [true, 'Debes completar todos los campos'],
