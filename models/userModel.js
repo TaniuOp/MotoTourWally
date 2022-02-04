@@ -28,14 +28,24 @@ const userSchema = new mongoose.Schema({
     type: 'Boolean',
     default: false,
   },
+  userRole: {
+    type: 'String',
+    default: 'user',
+  },
+  isAdmin: {
+    type: 'String',
+    default: false,
+  },
   password: {
     type: 'String',
     required: [true, 'Debes completar todos los campos'],
-    minlength: 4,
+    minlength: 6,
+    select: false, //--> Don´t send this field when ask for the user data (get * user)
   },
   passwordConfirm: {
     type: 'String',
     required: [true, 'Debes confirmar tu contraseña'],
+    select: false, //--> Don´t send this field
     validate: {
       validator: function (element) {
         return element === this.password;
@@ -51,11 +61,20 @@ userSchema.pre('save', async function (next) {
   // if password field is not modified, run netx() and exit the middleware
   if (!this.isModified('password')) return next();
   // if password is modified (creat or edit user) encrypt password
-  this.password = await bcrypt.hash(this.password, 10);
+  this.password = await bcrypt.hash(this.password, 12);
   // delete password confirm item
   this.passwordConfirm = undefined;
   next();
 });
+
+// Mongoose instance method (we can call this methos from all the App)
+userSchema.methods.correctPassword = async function (
+  //--> we can use this instance with "correctPassword" method
+  bodyPassword,
+  dataBasePassword
+) {
+  return await bcrypt.compare(bodyPassword, dataBasePassword);
+};
 
 // Mongoose Model
 const User = mongoose.model('User', userSchema);
