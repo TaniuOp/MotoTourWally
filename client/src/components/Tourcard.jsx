@@ -1,12 +1,14 @@
-const TourCard = () => {
-    return(
-        <div className="card_container">
-            <h2>Tour title</h2>
-            <p>Descripcion</p>
-            <p>Precio</p>
-        </div>
+const Tourcard = ({ tourInfo }) => {
+  const { name, imageCover, summary } = tourInfo;
 
-    )
-}
+  console.log(tourInfo);
+  return (
+    <div className='card__container'>
+      <h2 className='card__tile'>{name}</h2>
+      <img className='card__img' src={imageCover} alt='' />
+      <p className='card__text'>{summary}</p>
+    </div>
+  );
+};
 
-export default TourCard
+export default Tourcard;
