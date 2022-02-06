@@ -1,0 +1,43 @@
+// .homeMainContainer {
+//   display: flex;
+// }
+
+.headContainer {
+  background-image: url('https://www.mototourswally.com/wp-content/uploads/2017/09/Himalaya-1-1024x576.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 440px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.maintitle {
+  color: $primary-color;
+}
+.mainParagraph {
+  color: $primary-color;
+}
+
+.toursPrimary {
+  margin: 15px;
+  background-color: $gray-first;
+  color: $orange-color;
+  border-radius: 25px;
+  padding: 1rem 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 21px;
+}
+.toursPrimary:hover {
+  box-shadow: $box-shadow;
+}
+.toursPrimary:focus {
+  background-color: $gray-dark;
+  color: $orange-color;
+}
