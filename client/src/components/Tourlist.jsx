@@ -1,4 +1,6 @@
 import { useLoadedTours } from '../hooks/useLoadedTours';
+import { Helmet } from 'react-helmet';
+
 import Tourcard from './Tourcard';
 
 const Tourlist = () => {
@@ -10,10 +12,32 @@ const Tourlist = () => {
   };
 
   return (
-    <div>
-      {loading && 'Cargando...'}
-      {paintTours()}
-    </div>
+    <>
+      <Helmet>
+        <title>Moto Tours | Nuestros Tours </title>
+      </Helmet>
+      <div className='cardContainer'>
+        {loading && (
+          <>
+            <iframe
+              src='https://gfycat.com/ifr/AggravatingSilentChimneyswift'
+              frameborder='0'
+              scrolling='no'
+              allowfullscreen
+              width='640'
+              height='524'
+            ></iframe>
+            <p>
+              {' '}
+              <a href='https://gfycat.com/aggravatingsilentchimneyswift'>
+                via Gfycat
+              </a>
+            </p>
+          </>
+        )}
+        {paintTours()}
+      </div>
+    </>
   );
 };
 

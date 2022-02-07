@@ -1,0 +1,51 @@
+div.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+h2.tourTitle {
+  font-style: bold;
+  text-align: center;
+}
+
+div.tourCard {
+  margin: 3rem;
+  border-radius: 30px;
+  box-shadow: $box-shadow;
+  padding: 25px 4rem;
+  width: 200px;
+  height: 400px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+img.tourImg {
+  height: 60%;
+  width: 140%;
+  align-self: center;
+}
+
+p.tourPrice {
+  text-align: right;
+  font-size: 0.5rem;
+}
+
+p.tourDescription {
+  font-size: 0.7rem;
+  text-align: justify;
+  margin-right: 8px;
+  overflow: scroll;
+  max-height: 100px;
+}
+
+p.tourReviews {
+  color: $orange-color;
+  text-align: left;
+}
+
+p.tourId {
+  font-size: 0.4em;
+  text-align: right;
+}
