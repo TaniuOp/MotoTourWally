@@ -1,6 +1,7 @@
 // MODULES
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
+const { promisify } = require('util'); //--> To do a promisify (force a Promise to a not async function)
 
 // Auth Token function
 const signToken = (id) => {
@@ -61,6 +62,52 @@ exports.logIn = async (req, res) => {
       status: 'success',
       token,
     });
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err.message,
+    });
+  }
+};
+
+// Protect routes URL MIDDLEWARE function
+
+exports.protectURL = async (req, res, next) => {
+  try {
+    // 1. Get user token with Bearer copy
+    let token;
+    if (
+      req.headers.authorization &&
+      req.headers.authorization.startsWith('Bearer') //--> Get headers
+    ) {
+      token = req.headers.authorization.split(' ')[1];
+    }
+    if (!token) {
+      throw new Error('debes iniciar sesion para tener acceso');
+    }
+    // 2. Verify if token is valid (with a jwt.verify method) and obtain decoded user ID
+    const decoded = await promisify(jwt.verify)(
+      token,
+      process.env.JWT_MY_SECRET
+    ); //--> Returns a promise so we use a Node util promisify to change it to a async/await
+
+    // 3. Check if user still exists in DB (not deleted)
+    const currentUser = await User.findById(decoded.id);
+    if (!currentUser) {
+      throw new Error('Este usuario ya no existe o debe actualizar el Token');
+    }
+
+    // 4. Check if user changed password with Mongoose instance
+    if (currentUser.changePassword(decoded.iat)) {
+      throw new Error(
+        'Se ha modificado la contraseña recientemente. Debes iniciar sesión'
+      );
+    }
+
+    // 5. Save user to be used globally
+    req.user = currentUser;
+
+    next();
   } catch (err) {
     res.status(404).json({
       status: 'fail',

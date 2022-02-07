@@ -53,9 +53,10 @@ const userSchema = new mongoose.Schema({
       message: 'Las contraseñas no coinciden',
     },
   },
+  passwordChangedAt: Date,
 });
 
-// Mongoose Middleware (to encrypt password)
+// MONGOOSE MIDDLEWARE (to encrypt password)
 // .Pre middleware uses 2 params (the method that will execute this function "save" and the function itself)
 userSchema.pre('save', async function (next) {
   // if password field is not modified, run netx() and exit the middleware
@@ -67,16 +68,31 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-// Mongoose instance method (we can call this methos from all the App)
+// MONGOOSE INSTANCE METHOD (we can call this methos from all the App)
+// Check passwords intance method --> we can use this instance from the App with "correctPassword" method
 userSchema.methods.correctPassword = async function (
-  //--> we can use this instance with "correctPassword" method
   bodyPassword,
   dataBasePassword
 ) {
   return await bcrypt.compare(bodyPassword, dataBasePassword);
 };
 
-// Mongoose Model
+// Check if password has changed after token`s been assigned (true: password changed or false: is OK )
+userSchema.methods.changePassword = function (JWTTimeStamp) {
+  if (this.passwordChangedAt) {
+    console.log(this.passwordChangedAt);
+    console.log(JWTTimeStamp);
+    // Chenge date format to match and comapare with JWTTimeStamp
+    const changedTimeStamp = parseInt(
+      this.passwordChangedAt.getTime() / 1000,
+      10
+    );
+    return JWTTimeStamp < changedTimeStamp;
+  }
+  return false;
+};
+
+// MONGOOSE MODEL
 const User = mongoose.model('User', userSchema);
 
 // Export Model
