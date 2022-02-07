@@ -10,7 +10,7 @@ const Tourcard = ({ tourInfo }) => {
       ) : (
         <img
           className='tourImg'
-          src='https://img.icons8.com/search'
+          src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Motorcycle_icon.svg/600px-Motorcycle_icon.svg.png'
           alt={tourname}
         />
       )}

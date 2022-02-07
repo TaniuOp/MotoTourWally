@@ -15,6 +15,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .maintitle {
   color: $primary-color;
 }
@@ -22,17 +23,29 @@
   color: $primary-color;
 }
 
-.toursPrimary {
-  margin: 15px;
-  background-color: $gray-first;
-  color: $orange-color;
-  border-radius: 25px;
-  padding: 1rem 3rem;
+.headTextContainer {
+  background-color: rgba(236, 227, 227, 0.507);
+  text-align: center;
   display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: space-around;
   justify-content: center;
   align-items: center;
-  width: 150px;
+  padding: 3%;
+}
+
+.toursPrimary {
+  margin: 7px;
+  background-color: #e6e3db;
+  color: #d36e09;
+  border-radius: 12px;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  width: 30%;
   height: 21px;
+  align-items: center;
 }
 .toursPrimary:hover {
   box-shadow: $box-shadow;
@@ -40,4 +53,10 @@
 .toursPrimary:focus {
   background-color: $gray-dark;
   color: $orange-color;
+}
+
+.nextToursContainer {
+}
+
+.nextToursList {
 }

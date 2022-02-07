@@ -8,9 +8,6 @@ const Nav = () => {
           <NavLink to='/tourlist'>Nuestros Tour</NavLink>
         </li>
         <li>
-          <NavLink to='/toptours'>Top Tours</NavLink>
-        </li>
-        <li>
           <NavLink to='/about'>Sobre Nosotros</NavLink>
         </li>
       </ul>
