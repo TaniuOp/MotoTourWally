@@ -10,12 +10,18 @@ const topTours = require('../middleware/topTours');
 // ROUTER METHODS
 
 // Get top tours (first apply top tours filter and then get all tours with that filter)
-router.route('/toptours').get(topTours.getTopTours, tourController.getAllTours);
+router
+  .route('/toptours')
+  .get(
+    authController.protectURL,
+    topTours.getTopTours,
+    tourController.getAllTours
+  ); //--> Exececute the auth middleware (created in the controller file) to confirm user sesion
 
 // Get al tours and Create tour
 router
   .route('/')
-  .get(authController.protectURL, tourController.getAllTours) //--> Exececute the auth middleware (created in the controller file) to confirm user sesion
+  .get(tourController.getAllTours)
   .post(tourController.createTour);
 
 // Edit , update and delete Tour
