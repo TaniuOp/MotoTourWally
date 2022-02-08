@@ -2,6 +2,8 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
 const { promisify } = require('util'); //--> To do a promisify (force a Promise to a not async function)
+const sendEmail = require('../utils/email');
+const crypto = require('crypto');
 
 // Auth Token function
 const signToken = (id) => {
@@ -108,6 +110,117 @@ exports.protectURL = async (req, res, next) => {
     req.user = currentUser;
 
     next();
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err.message,
+    });
+  }
+};
+
+// Middleware to restrict rutes for users Roles
+exports.restrictTo = (...roles) => {
+  //  (...roles)-> rest opearator as parameter. Is this case is ['admin', 'lead-guide', 'guide'] received from the tourRoute
+  return (req, res, next) => {
+    console.log(req.user);
+    console.log(roles);
+    try {
+      // if Roles array does not includes req.user.role , throw erros
+      if (!roles.includes(req.user.userRole)) {
+        //--> we compare actual user rol with defined keys roles in routes
+        throw new Error('Debes tener permisos para realizar esta acción');
+      }
+      next(); //--> Will return the middleware function with params
+    } catch (err) {
+      res.status(404).json({
+        status: 'fail',
+        message: err.message,
+      });
+    }
+  };
+};
+
+// Forgot password function
+exports.forgotPassword = async (req, res) => {
+  try {
+    // 1. Verify if user exists in the DB based on POST email sent
+    const user = await User.findOne({ email: req.body.email });
+    if (!user)
+      throw new Error('No se ha encontrado un usuario con estos datos');
+
+    // 2. Generate reset random token with the instance method from the user Model
+    const resetToken = user.createRandomResetToken();
+    await user.save({ validateBeforeSave: false }); //-> Save the user data and dont validate the rest of the data
+
+    // 3. Send random token to the user email
+    // req.protocol;--> Obtain the url protocol (http / https)
+    // req.get('host');--> Obtain the url
+    const resetURL = `${req.protocol}://${req.get(
+      'host'
+    )}/api/v1/users/reset-password/${resetToken}`;
+
+    const subject = `Reestablece tu contraseña`;
+
+    const text = `Reestablece tu contraseña haciendo click en el siguiente enlace: /n ${resetURL} /n El enlace caducará en 10min /n Si no has solicitado reestablecer tu contraseña, por favor ignora este mensaje.`;
+    try {
+      // Call sendEmail with user and email arguments
+      await sendEmail({
+        email: user.email,
+        subject,
+        text,
+      });
+      // Send response to client
+      res.status(200).json({
+        status: 'success',
+        message: 'Se ha enviado el correo para reestablecer la contraseña',
+      });
+    } catch (err) {
+      user.passwordResetToken = undefined;
+      user.passwordResetExpires = undefined;
+      await user.save({ validateBeforeSave: false });
+      throw new Error(
+        'Hubo un error al enviar el correo de reestablecimiento de contraseña'
+      );
+    }
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err.message,
+    });
+  }
+};
+
+// Reset password
+exports.resetPassword = async (req, res) => {
+  try {
+    // 1. Obtain user based on the recovery password token
+    const hashedToken = crypto
+      .createHash('sha256')
+      .update(req.params.token)
+      .digest('hex');
+
+    const user = await User.findOne({
+      passwordResetToken: hashedToken,
+      passwordResetExpires: { $gt: Date.now() },
+    });
+    // 2. If token has not expired, the user exists and new password match, set new password if not, throw error
+    if (!user) throw new Error('El token es inválido o ha expirado');
+
+    user.password = req.body.password;
+    user.passwordConfirm = req.body.passwordConfirm;
+    user.passwordResetToken = undefined;
+    user.passwordResetExpires = undefined;
+
+    // 3. Save user document on DB (with password validations) and update passwordChangedAt value
+    await user.save();
+
+    // 4. If everything is ok, generate the token, Log the user in, and update & send JWT to Client
+    const token = signToken(user._id);
+
+    res.status(200).json({
+      status: 'success',
+      token,
+    });
   } catch (err) {
     res.status(404).json({
       status: 'fail',

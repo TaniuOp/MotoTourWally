@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
 
 // Mongoos Schema
 const userSchema = new mongoose.Schema({
@@ -30,6 +31,7 @@ const userSchema = new mongoose.Schema({
   },
   userRole: {
     type: 'String',
+    enum: ['admin', 'user', 'guide', 'lead-guide'],
     default: 'user',
   },
   isAdmin: {
@@ -54,10 +56,13 @@ const userSchema = new mongoose.Schema({
     },
   },
   passwordChangedAt: Date,
+  passwordResetToken: String,
+  passwordResetExpires: Date,
 });
 
-// MONGOOSE MIDDLEWARE (to encrypt password)
-// .Pre middleware uses 2 params (the method that will execute this function "save" and the function itself)
+// MONGOOSE MIDDLEWARES (to encrypt password)
+
+// Encrypt Password:  .Pre middleware uses 2 params (the method that will execute this function "save" and the function itself)
 userSchema.pre('save', async function (next) {
   // if password field is not modified, run netx() and exit the middleware
   if (!this.isModified('password')) return next();
@@ -68,8 +73,16 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-// MONGOOSE INSTANCE METHOD (we can call this methos from all the App)
-// Check passwords intance method --> we can use this instance from the App with "correctPassword" method
+// Update passwordChangedAt field: Only if the password ir modified, update passwordCanhgedAt field with current date
+userSchema.pre('save', async function (next) {
+  if (!this.isModified('password') || this.isNew) return next();
+  this.passwordChangedAt = Date.now() + 2000; // add 2 seconds to prevent error with the JWT generator
+  next();
+});
+
+// *** MONGOOSE INSTANCE METHODS (we can call th∫ese methos from all the App) ***
+
+// correctPassword instance: Check passwords intance method --> we can use this instance from the App with "correctPassword" method
 userSchema.methods.correctPassword = async function (
   bodyPassword,
   dataBasePassword
@@ -77,7 +90,7 @@ userSchema.methods.correctPassword = async function (
   return await bcrypt.compare(bodyPassword, dataBasePassword);
 };
 
-// Check if password has changed after token`s been assigned (true: password changed or false: is OK )
+// changePassword instance: Check if password has changed after token`s been assigned (true: password changed or false: is OK )
 userSchema.methods.changePassword = function (JWTTimeStamp) {
   if (this.passwordChangedAt) {
     console.log(this.passwordChangedAt);
@@ -87,9 +100,24 @@ userSchema.methods.changePassword = function (JWTTimeStamp) {
       this.passwordChangedAt.getTime() / 1000,
       10
     );
-    return JWTTimeStamp < changedTimeStamp;
+    return JWTTimeStamp < changedTimeStamp; //True is an error
   }
+  // False means not changed
   return false;
+};
+
+// createRandomToken instance: Generate random token for the password recovery encripted with node module crypto
+userSchema.methods.createRandomResetToken = function () {
+  const randomToken = crypto.randomBytes(32).toString('hex'); //Generate a random alphanumeric token
+  // Set randomToken to passwordResetToken field in the DB encripted
+  this.passwordResetToken = crypto
+    .createHash('sha256')
+    .update(randomToken)
+    .digest('hex');
+
+  // Set 'passwordResetExpires'
+  this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
+  return randomToken;
 };
 
 // MONGOOSE MODEL
