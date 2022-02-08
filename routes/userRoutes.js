@@ -7,16 +7,37 @@ const authController = require('../controllers/authController');
 // ROUTES
 
 // USER ROUTES
-router.post('/signup', authController.signUp);
-router.post('/login', authController.logIn);
+router.post('/signup', authController.signUp); // Register
+router.post('/login', authController.logIn); //Login
+router.post('/forgot-password', authController.forgotPassword); // Forgot password
+router.patch('/reset-password/:token', authController.resetPassword); // Reset password (modify the password)
 
 // MAIN ROUTES
-router.route('/').get(userController.getAllUsers).post(userController.addUser);
+router
+  .route('/')
+  .get(
+    authController.protectURL,
+    authController.restrictTo('admin'),
+    userController.getAllUsers
+  )
+  .post(
+    authController.protectURL,
+    authController.restrictTo('admin'),
+    userController.addUser
+  );
 
 router
   .route('/:id')
-  .get(userController.getUser)
-  .patch(userController.editUser)
-  .delete(userController.deleteUser);
+  .get(
+    authController.protectURL,
+    authController.restrictTo('admin', 'lead-guide'),
+    userController.getUser
+  )
+  .patch(authController.protectURL, userController.editUser)
+  .delete(
+    authController.protectURL,
+    authController.restrictTo('admin'),
+    userController.deleteUser
+  );
 
 module.exports = router;
