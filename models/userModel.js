@@ -38,6 +38,7 @@ const userSchema = new mongoose.Schema({
     type: 'String',
     default: false,
   },
+  Country: 'String',
   password: {
     type: 'String',
     required: [true, 'Debes completar todos los campos'],
@@ -48,6 +49,7 @@ const userSchema = new mongoose.Schema({
     type: 'String',
     required: [true, 'Debes confirmar tu contraseña'],
     select: false, //--> Don´t send this field
+    // Validation only works with .save() || .crate() (does not work with findBy..)
     validate: {
       validator: function (element) {
         return element === this.password;
@@ -58,6 +60,11 @@ const userSchema = new mongoose.Schema({
   passwordChangedAt: Date,
   passwordResetToken: String,
   passwordResetExpires: Date,
+  active: {
+    type: 'boolean',
+    default: true,
+    select: false,
+  },
 });
 
 // MONGOOSE MIDDLEWARES (to encrypt password)
@@ -77,6 +84,14 @@ userSchema.pre('save', async function (next) {
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password') || this.isNew) return next();
   this.passwordChangedAt = Date.now() + 2000; // add 2 seconds to prevent error with the JWT generator
+  next();
+});
+
+// Find users with "active" field set to "true" only
+// 1. get user schema and filter by the word find .. that includes the active users
+userSchema.pre(/^find/, function (next) {
+  //--> regular expresion
+  this.find({ active: true });
   next();
 });
 

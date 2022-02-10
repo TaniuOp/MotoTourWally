@@ -11,6 +11,21 @@ router.post('/signup', authController.signUp); // Register
 router.post('/login', authController.logIn); //Login
 router.post('/forgot-password', authController.forgotPassword); // Forgot password
 router.patch('/reset-password/:token', authController.resetPassword); // Reset password (modify the password)
+router.patch(
+  '/edit-profile-password',
+  authController.protectURL,
+  authController.updateCurrentUserPassword
+); // Modify the password
+router.patch(
+  '/edit-profile',
+  authController.protectURL,
+  authController.updateCurrentUser
+); // Modify the user data
+router.patch(
+  '/edit-profile-delete',
+  authController.protectURL,
+  authController.deleteCurrentUser
+); // Delete (deactivate) user
 
 // MAIN ROUTES
 router

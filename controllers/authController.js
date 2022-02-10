@@ -5,10 +5,22 @@ const { promisify } = require('util'); //--> To do a promisify (force a Promise 
 const sendEmail = require('../utils/email');
 const crypto = require('crypto');
 
-// Auth Token function
+// SIGN Auth TOKEN FUNCTION
+// Create Token --> We migrate it on top so we dont repeat the function
+
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_MY_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
+  });
+};
+
+// CREATE AND SEND TOKEN TO CLIENT FUNCTION (to be use in various controllers functions instead of repeating code in all)
+const createSendToken = (user, statusCode, res) => {
+  const token = signToken(user._id);
+  res.status(statusCode).json({
+    status: 'success',
+    token,
+    data: { user },
   });
 };
 
@@ -24,15 +36,9 @@ exports.signUp = async (req, res) => {
       passwordConfirm: req.body.passwordConfirm,
     }); //--> no le pasamos el req.body completo por seguridad (evitamos que se pueda pasar isAdmin: true)
 
-    // Create Token --> We migrate it on top so we dont repeat the function
-    // const token = jwt.sign({ id: newUser._id }, process.env.JWT_MY_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN,});
-    const token = signToken(newUser._id);
-
-    res.status(201).json({
-      status: 'success',
-      token,
-      data: { user: newUser },
-    });
+    // If everything is ok, send the token to client
+    // We use the global function to generate and send Token sending this controller arguments
+    createSendToken(newUser, 201, res);
   } catch (err) {
     res.status(404).json({
       status: 'fail',
@@ -58,12 +64,9 @@ exports.logIn = async (req, res) => {
     if (!user || !(await user.correctPassword(password, user.password))) {
       throw new Error('¿Estas seguro que tus datos son correctos?');
     }
-    const token = signToken(user._id);
     // 3. If everything is ok, send the token to client
-    res.status(200).json({
-      status: 'success',
-      token,
-    });
+    // We use the global function to generate and send Token sending this controller arguments
+    createSendToken(user, 200, res);
   } catch (err) {
     res.status(404).json({
       status: 'fail',
@@ -215,11 +218,83 @@ exports.resetPassword = async (req, res) => {
     await user.save();
 
     // 4. If everything is ok, generate the token, Log the user in, and update & send JWT to Client
-    const token = signToken(user._id);
+    // We use the global function to generate and send Token sending this controller arguments
+    createSendToken(user, 200, res);
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err.message,
+    });
+  }
+};
 
+// Update loged user password
+exports.updateCurrentUserPassword = async (req, res) => {
+  try {
+    // 1. Get user from DB
+    const user = await User.findByIdAndUpdate(req.user.id).select('+password');
+
+    // 2. Verify if POST "current" password is ok
+    const passwordMatch = await user.correctPassword(
+      req.body.currentPassword,
+      user.password
+    );
+    if (!passwordMatch) throw new Error('Invalid password');
+
+    // 3. if current password is ok, uptade with new password
+    user.password = req.body.password;
+    user.passwordConfirm = req.body.passwordConfirm;
+
+    // 4. Update and save user
+    await user.save();
+
+    // We use the global function to generate and send Token sending this controller arguments
+    createSendToken(user, 200, res);
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err.message,
+    });
+  }
+};
+
+// Update user data
+exports.updateCurrentUser = async (req, res) => {
+  try {
+    // findByIdAndUpdate with id and fields to change. If one of these fields is not updated, it mantains previous value
+    const user = await User.findByIdAndUpdate(
+      req.user.id,
+      {
+        name: req.body.name,
+        email: req.body.email,
+        photo: req.body.photo,
+        newsletter: req.body.newsletter,
+        country: req.body.country,
+      },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
     res.status(200).json({
       status: 'success',
-      token,
+      data: { user },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err.message,
+    });
+  }
+};
+
+// Delete currrent user account (inactive)
+exports.deleteCurrentUser = async (req, res) => {
+  try {
+    await User.findByIdAndUpdate(req.user.id, { active: false });
+    res.status(204).json({
+      status: 'success',
+      data: null,
     });
   } catch (err) {
     res.status(404).json({
