@@ -17,6 +17,23 @@ const signToken = (id) => {
 // CREATE AND SEND TOKEN TO CLIENT FUNCTION (to be use in various controllers functions instead of repeating code in all)
 const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
+
+  // Define cookies options
+  const cookiesOptions = {
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+    ),
+    httpOnly: true, //--> allows only read fron the browser
+  };
+  // Conditional for secure protocol
+  if (process.env.NODE_ENV !== 'production') {
+    cookiesOptions.secure = true; //--> the cookie saves if the protocol is https
+    console.log('Send production Cookies in secure mode');
+  }
+
+  // Send cookie to client (name, options)
+  res.cookie('jwt', token, cookiesOptions);
+
   res.status(statusCode).json({
     status: 'success',
     token,
