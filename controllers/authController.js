@@ -1,3 +1,4 @@
+'use strict';
 // MODULES
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
@@ -7,7 +8,6 @@ const crypto = require('crypto');
 
 // SIGN Auth TOKEN FUNCTION
 // Create Token --> We migrate it on top so we dont repeat the function
-
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_MY_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
@@ -19,6 +19,7 @@ const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
 
   // Define cookies options
+  console.log(process.env.JWT_COOKIE_EXPIRES_IN);
   const cookiesOptions = {
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
@@ -26,7 +27,7 @@ const createSendToken = (user, statusCode, res) => {
     httpOnly: true, //--> allows only read fron the browser
   };
   // Conditional for secure protocol
-  if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV === 'production') {
     cookiesOptions.secure = true; //--> the cookie saves if the protocol is https
     console.log('Send production Cookies in secure mode');
   }

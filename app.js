@@ -14,9 +14,9 @@ app.use(express.urlencoded({ extended: false }));
 console.log(process.env.NODE_ENV);
 
 // Define conditional for dev/prod
-if (process.env.NODE_ENV == 'development') {
+if (process.env.NODE_ENV === 'development') {
   app.use(morgan());
-  console.log('Development');
+  console.log('App running in development mode');
 }
 
 // Welcome - localhost
