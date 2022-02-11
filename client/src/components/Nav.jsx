@@ -5,6 +5,9 @@ const Nav = () => {
     <div className='nav'>
       <ul>
         <li>
+          <NavLink to='/login'>Entrar</NavLink>
+        </li>
+        <li>
           <NavLink to='/tourlist'>Nuestros Tour</NavLink>
         </li>
         <li>

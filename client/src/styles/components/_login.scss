@@ -1,0 +1,50 @@
+.div_form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loginFormItself {
+  align-items: center;
+  border: 1px $gray-first;
+  padding: 15px 30px 30px 15px;
+  margin-top: 20px;
+  width: 60%;
+  background: #fff;
+  box-shadow: $box-shadow;
+  border-radius: 16px;
+}
+
+.form-control {
+  border-radius: 4px;
+  padding: 6px;
+  color: $gray-dark;
+  background-color: $gray-first;
+}
+
+.btn {
+  background-color: $orange-color;
+  color: $gray-first;
+  width: 20%;
+  height: 2.5em;
+  border-radius: 8px;
+  margin-top: 50px;
+  margin-bottom: 40px;
+}
+
+.idinfo {
+  font-size: 0.6em;
+}
+
+.logoForm {
+  width: 178.4px;
+  height: 40px;
+  left: 871px;
+  top: 246px;
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-top: 10px;
+}
