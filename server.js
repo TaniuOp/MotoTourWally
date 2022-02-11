@@ -1,9 +1,8 @@
 // MODULES
 const mongoose = require('mongoose');
-const app = require('./app');
+require('dotenv').config({ path: './.env' });
 
-const dotenv = require('dotenv');
-dotenv.config({ path: './.env' });
+const app = require('./app');
 
 // DATABASE CONECTION
 const DB = process.env.DATABASE;
