@@ -27,12 +27,6 @@ const Tourlist = () => {
               width='640'
               height='524'
             ></iframe>
-            <p>
-              {' '}
-              <a href='https://gfycat.com/aggravatingsilentchimneyswift'>
-                via Gfycat
-              </a>
-            </p>
           </>
         )}
         {paintTours()}

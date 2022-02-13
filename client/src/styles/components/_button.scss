@@ -1,0 +1,15 @@
+.button {
+  text-transform: uppercase;
+  font-size: $default-font-size;
+  padding: 2rem 3rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 100px;
+  transition: all 0.2s;
+  animation: moveInBottom 0.7s ease-out;
+
+  &:hover {
+    transform: translateY(-0.2rem);
+    box-shadow: 0 10px 20px rgba($color-black, 0.2);
+  }
+}
