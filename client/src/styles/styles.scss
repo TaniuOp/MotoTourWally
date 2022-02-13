@@ -10,6 +10,12 @@
 @import './components/home';
 @import './components/about';
 @import './components/login';
+@import './components/button';
 
 // views
 @import './views/app';
+
+// base
+@import './base/base';
+@import './base/fonts';
+@import './base/animations';

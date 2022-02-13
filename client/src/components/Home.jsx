@@ -4,17 +4,17 @@ const Home = () => {
   return (
     <div className='homeMainContainer'>
       {/* HEAD CONTENT */}
-      <main className='headContainer'>
-        <div className='headTextContainer'>
-          <h1 className='maintitle'> ¡Encuentra el Tour Perfecto! </h1>
-          <p className='mainParagraph'>
+      <main className='head-Container'>
+        <div className='head-Text-Container'>
+          <h1 className='heading__primary'> ¡Encuentra el Tour Perfecto! </h1>
+          <p className='heading__secondary'>
             En la moto no hay destino, el destino es el viaje…
           </p>
-          <p className='mainParagraph'>
+          <p className='heading__secondary'>
             4 ruedas transportan un cuerpo, 2 ruedas transportan el alma.
           </p>
-          <p className='mainParagraph'>¡El mundo nos espera!</p>
-          <Link to='/tourlist' className='toursPrimary'>
+          <p className='heading__secondary'>¡El mundo nos espera!</p>
+          <Link to='/tourlist' className='button button--primary'>
             Ver Tours
           </Link>
         </div>

@@ -71,7 +71,7 @@ const Login = () => {
             <button className='btn'>Acceder</button>
           </div>
 
-          <Link to='/register'>¿No tienes cuenta? Regístrate</Link>
+          <Link to='/signup'>¿No tienes cuenta? Regístrate</Link>
         </Form>
       </div>
     </div>

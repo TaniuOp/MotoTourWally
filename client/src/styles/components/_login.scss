@@ -7,11 +7,11 @@
 
 .loginFormItself {
   align-items: center;
-  border: 1px $gray-first;
+  border: 1px $color-gray-dark;
   padding: 15px 30px 30px 15px;
   margin-top: 20px;
   width: 60%;
-  background: #fff;
+  background: $color-white;
   box-shadow: $box-shadow;
   border-radius: 16px;
 }
@@ -19,13 +19,13 @@
 .form-control {
   border-radius: 4px;
   padding: 6px;
-  color: $gray-dark;
-  background-color: $gray-first;
+  color: $color-gray-dark;
+  background-color: $color-gray-dark;
 }
 
 .btn {
-  background-color: $orange-color;
-  color: $gray-first;
+  background-color: $color-primary-dark;
+  color: $color-gray-dark;
   width: 20%;
   height: 2.5em;
   border-radius: 8px;
