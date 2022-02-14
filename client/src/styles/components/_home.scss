@@ -20,14 +20,6 @@
   clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
 }
 
-.heading__primary {
-  color: $color-primary;
-}
-.heading__secondary {
-  color: $color-primary;
-  font-size: 0.8rem;
-}
-
 .head-Text-Container {
   text-align: center;
   display: flex;
@@ -59,8 +51,18 @@
   color: $color-primary-dark;
 }
 
-.nextToursContainer {
+.top-Tours-Container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .nextToursList {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-content: center;
 }
+
+// .nextToursList {
+// }

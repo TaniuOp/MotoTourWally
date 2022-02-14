@@ -1,8 +1,15 @@
+import { useLoadedTours } from '../hooks/useLoadedTours';
+import Tourcard from './Tourcard';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
+  const { dataTours, loading } = useLoadedTours(); //-->   // Destructuring from external hook
+  //   Paint Top tours
+  const paintTours = () => {
+    return dataTours.map((tours, i) => <Tourcard tourInfo={tours} key={i} />);
+  };
   return (
-    <div className='homeMainContainer'>
+    <div className='home-Container'>
       {/* HEAD CONTENT */}
       <main className='head-Container'>
         <div className='head-Text-Container'>
@@ -20,19 +27,19 @@ const Home = () => {
         </div>
       </main>
       {/* TOP TOURS  */}
-      <article className='nextToursContainer'>
-        <h2>Top Tours</h2>
+      <article className='top-Tours-Container'>
+        <h3 className='heading__tertiary'>Top Tours</h3>
         <div className='nextToursList'>
-          <div className='tourCard'>
-            <h2 className='tourTitle'>Tour Name</h2>
-            <img
-              className='tourImg'
-              src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Motorcycle_icon.svg/600px-Motorcycle_icon.svg.png'
-              alt='Tour image'
-            />
-            <p className='tourDescription'>Lorem ipsum</p>
-            <p className='tourPrice'>Desde 0 € por persona</p>
-          </div>
+          {loading && (
+            <>
+              <img
+                className='loader'
+                src='https://mir-s3-cdn-cf.behance.net/project_modules/disp/04de2e31234507.564a1d23645bf.gif'
+                alt='Loading'
+              />
+            </>
+          )}
+          {paintTours()}
         </div>
       </article>
       {/* CONTACT */}

@@ -1,4 +1,4 @@
-// COLORS
+// Colors
 $color-primary: #f7db06;
 $color-primary-light: #d38040a7;
 $color-primary-dark: #d36e09;
@@ -11,5 +11,9 @@ $color-black: #000;
 // Box
 $box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
-// FONTS
+// Fonts
 $default-font-size: 1.6rem;
+
+// Breakpoints
+$breakpoint-tablet: 1007px;
+$breakpoint-mobile: 640px;
