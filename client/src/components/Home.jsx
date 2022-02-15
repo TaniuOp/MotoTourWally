@@ -1,13 +1,9 @@
-import { useLoadedTours } from '../hooks/useLoadedTours';
-import Tourcard from './Tourcard';
+import Contact from './Contact';
+import Toptours from './Toptours';
+
 import { Link } from 'react-router-dom';
 
 const Home = () => {
-  const { dataTours, loading } = useLoadedTours(); //-->   // Destructuring from external hook
-  //   Paint Top tours
-  const paintTours = () => {
-    return dataTours.map((tours, i) => <Tourcard tourInfo={tours} key={i} />);
-  };
   return (
     <div className='home-Container'>
       {/* HEAD CONTENT */}
@@ -21,7 +17,7 @@ const Home = () => {
             4 ruedas transportan un cuerpo, 2 ruedas transportan el alma.
           </p>
           <p className='heading__secondary'>¡El mundo nos espera!</p>
-          <Link to='/tourlist' className='button button--primary'>
+          <Link to='/tourlist' className='button button--secondary'>
             Ver Tours
           </Link>
         </div>
@@ -29,22 +25,12 @@ const Home = () => {
       {/* TOP TOURS  */}
       <article className='top-Tours-Container'>
         <h3 className='heading__tertiary'>Top Tours</h3>
-        <div className='nextToursList'>
-          {loading && (
-            <>
-              <img
-                className='loader'
-                src='https://mir-s3-cdn-cf.behance.net/project_modules/disp/04de2e31234507.564a1d23645bf.gif'
-                alt='Loading'
-              />
-            </>
-          )}
-          {paintTours()}
-        </div>
+        <Toptours />
       </article>
       {/* CONTACT */}
-      <section className='contactSection'>
-        <form action=''></form>
+      <section className='contact-Container'>
+        <h3 className='heading__tertiary'>Contacta con nosotros</h3>
+        <Contact />
       </section>
     </div>
   );

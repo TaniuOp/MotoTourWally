@@ -5,6 +5,7 @@ import Home from './Home';
 import Login from './Login';
 import Signup from './Signup';
 import Userprofile from './Userprofile';
+import Tourdetail from './Tourdetail';
 
 const Main = () => {
   return (
@@ -15,6 +16,7 @@ const Main = () => {
       <Route path='/login' element={<Login />} />
       <Route path='/signup' element={<Signup />} />
       <Route path='/userprofile' element={<Userprofile />} />
+      <Route path='/tourdetail/:tour_id' element={<Tourdetail />} />
     </Routes>
   );
 };

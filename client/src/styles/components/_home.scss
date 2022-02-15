@@ -15,7 +15,7 @@
       rgba($color-primary-light, 0.8)
     ),
     url('https://www.mototourswally.com/wp-content/uploads/2017/09/Himalaya-1-1024x576.jpg');
-  height: 90vh;
+  height: 60vh;
   background-size: cover;
   clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
 }
@@ -64,5 +64,8 @@
   align-content: center;
 }
 
-// .nextToursList {
-// }
+.contact-Container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
