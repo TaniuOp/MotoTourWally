@@ -1,36 +1,49 @@
-.wrapper {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
+.about-wrapper {
+  display: flex;
 }
 
-.aboutUs {
-  grid-column: 1;
-  grid-row: 1;
+.head-Container-about {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(247, 219, 6, 0.8),
+      rgba(201, 123, 63, 0.8)
+    ),
+    url(https://www.mototourswally.com/wp-content/uploads/2017/09/Himalaya-1-1024x576.jpg);
+  height: 100vh;
+  width: 80%;
+  background-size: cover;
+  clip-path: polygon(0% 0%, 45% 0%, 60% 100%, 0% 100%);
 }
 
-.aboutUsImg {
-  grid-column: 2;
-  grid-row: 1/4;
-  margin: 10% auto auto 10%;
+.head-Text-Container-about {
+  width: 45%;
+  margin: 0 0 0 50%;
+  position: absolute;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-.aboutUsTextOne {
-  grid-column: 1;
-  grid-row: 2;
+.about-img {
+  height: 30rem;
+  width: auto;
+  justify-content: center;
 }
 
-.aboutUsTextTwo {
-  grid-column: 1;
-  grid-row: 3;
-}
-.aboutUsTextThree {
-  grid-column: 1/2;
-  grid-row: 4;
+.about {
+  width: min-content;
+  margin: 2%;
 }
 
-.aboutUsTextFour {
-  grid-column: 2;
-  grid-row: 4;
-  font-size: 0.6em;
-  font-style: italic;
+#about {
+  margin: 2%;
 }

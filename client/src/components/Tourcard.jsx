@@ -19,10 +19,9 @@ const Tourcard = ({ tourInfo }) => {
           />
         )}
         <p className='tourDescription'>{summary}</p>
-        <p className='tourReview'>Valoración: {ratingsAverage}</p>
-
         <p className='tourPrice'>Desde {price} € por persona</p>
-      </div>{' '}
+        <p className='tourReview'>Valoración: {ratingsAverage}</p>
+      </div>
     </Link>
   );
 };

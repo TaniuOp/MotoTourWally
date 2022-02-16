@@ -13,6 +13,7 @@ a.tour-link {
 h2.tourTitle {
   font-style: bold;
   text-align: center;
+  height: 5%;
 }
 
 div.tourCard {
@@ -28,7 +29,7 @@ div.tourCard {
 }
 
 img.tourImg {
-  height: 60%;
+  height: 50%;
   width: 140%;
   align-self: center;
 }
@@ -40,11 +41,10 @@ p.tourPrice {
 }
 
 p.tourDescription {
-  font-size: 0.7rem;
+  font-size: 1rem;
   text-align: justify;
-  margin-right: 8px;
   overflow: scroll;
-  max-height: 100px;
+  height: 20%;
 }
 
 p.tourReviews {

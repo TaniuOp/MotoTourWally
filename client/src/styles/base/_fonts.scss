@@ -11,7 +11,6 @@
   color: $color-white;
   font-size: 2.5rem;
   font-weight: 300;
-  margin: 0 0 2rem;
   letter-spacing: 0.2rem;
   animation: moveInRight 0.7s ease-out;
 }
@@ -20,7 +19,6 @@
   color: $color-primary-dark;
   font-size: 2rem;
   font-weight: 500;
-  margin: 0 0 2rem;
   letter-spacing: 0.2rem;
   animation: moveInRight 0.7s ease-out;
 }
@@ -29,8 +27,26 @@
   color: $color-gray-dark;
   font-size: 2rem;
   font-weight: 500;
-  margin: 0 0 2rem;
   letter-spacing: 0.2rem;
+  animation: moveInRight 0.7s ease-out;
+}
+
+.heading__quaternary--medium {
+  color: $color-gray-dark;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.2rem;
+  animation: moveInRight 0.7s ease-out;
+  line-height: 1.2;
+  text-align: justify;
+}
+
+.heading__quaternary--small {
+  color: $color-gray-dark;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.2rem;
+  font-style: italic;
   animation: moveInRight 0.7s ease-out;
 }
 

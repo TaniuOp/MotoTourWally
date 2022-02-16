@@ -24,7 +24,7 @@ const createSendToken = (user, statusCode, res) => {
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
     ),
-    httpOnly: true, //--> allows only read fron the browser
+    httpOnly: false, //--> allows only read fron the browser
   };
   // Conditional for secure protocol
   if (process.env.NODE_ENV === 'production') {
