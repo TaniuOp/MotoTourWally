@@ -19,14 +19,11 @@ const Tourlist = () => {
       <div className='cardContainer'>
         {loading && (
           <>
-            <iframe
-              src='https://gfycat.com/ifr/AggravatingSilentChimneyswift'
-              frameborder='0'
-              scrolling='no'
-              allowfullscreen
-              width='640'
-              height='524'
-            ></iframe>
+            <img
+              className='loader'
+              src='https://mir-s3-cdn-cf.behance.net/project_modules/disp/04de2e31234507.564a1d23645bf.gif'
+              alt='Loading'
+            />
           </>
         )}
         {paintTours()}

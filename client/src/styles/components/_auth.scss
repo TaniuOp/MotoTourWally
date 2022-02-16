@@ -5,15 +5,9 @@
   align-items: center;
 }
 
-.loginFormItself {
-  align-items: center;
-  border: 1px $color-gray-dark;
-  padding: 15px 30px 30px 15px;
+.form-auth {
   margin-top: 20px;
-  width: 60%;
-  background: $color-white;
-  box-shadow: $box-shadow;
-  border-radius: 16px;
+  width: 30%;
 }
 
 .form-control {
@@ -47,4 +41,10 @@
 
 .form-group {
   margin-top: 10px;
+}
+
+.link {
+  margin-top: 10%;
+  border-radius: 10%;
+  padding: 1%;
 }

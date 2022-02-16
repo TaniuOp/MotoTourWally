@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
-import { getTours, getTopTours } from '../helpers/getTours';
+import { getTopTours } from '../helpers/getTopTours';
 
-export const useLoadedTours = () => {
+export const useTopLoadedTours = () => {
   const [toursData, setToursData] = useState({
     dataTours: [],
     loading: true,
   });
   //-->  // Migrated obtain the fetch petition from the helper file
   useEffect(() => {
-    getTours().then((tours) =>
+    getTopTours().then((tours) =>
       setToursData({
         dataTours: tours,
         loading: false,

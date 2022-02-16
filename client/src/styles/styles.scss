@@ -2,16 +2,17 @@
 @import './utils/variables';
 @import './utils/mixins';
 
-// componentes
+// components
 @import './components/header';
 @import './components/nav';
 @import './components/footer';
 @import './components/tourcard';
 @import './components/home';
 @import './components/about';
-@import './components/login';
+@import './components/auth';
 @import './components/button';
-
+@import './components/form';
+@import './components/tourdetail';
 // views
 @import './views/app';
 
@@ -19,3 +20,7 @@
 @import './base/base';
 @import './base/fonts';
 @import './base/animations';
+@import './base/loader';
+
+// mixins
+@import './utils/mixins.scss';
