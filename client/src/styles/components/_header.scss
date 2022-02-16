@@ -12,6 +12,12 @@
   margin-bottom: 45px;
 }
 
+a {
+  text-decoration: none;
+  color: $color-gray-dark;
+  cursor: pointer;
+}
+
 .header > img {
   padding-left: 15px;
 }

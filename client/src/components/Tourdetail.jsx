@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+// import Carousel from 'flat-carousel';
+import Carousel from 'framer-motion-carousel';
 
 const Tourdetail = () => {
   const { tour_id } = useParams(); //-> ID from the url
@@ -33,19 +35,51 @@ const Tourdetail = () => {
           />
         </>
       ) : (
-        <div className='tour-detail'>
-          <img src={tourData.imageCover} alt={tourData.tourname} />
-          <h1>Tour {tourData.tourname} </h1>
-          <>
-            {tourData.images
-              ? tourData.images.map((e, i) => <img src={e} key={i} />)
-              : null}
-          </>
-          <ul>
-            {tourData.startDates
-              ? tourData.startDates.map((e, i) => <li key={i}>{e}</li>)
-              : null}
-          </ul>
+        <div className='tour-main-container'>
+          <div className='tour-head-container'>
+            <img
+              src={tourData.imageCover}
+              alt={tourData.tourname}
+              className='tour-detail-img'
+            />
+            <div className='tour-detail-info'>
+              <p className='tour-detail-rating heading__secondary'>
+                Valoraxción: {tourData.ratingsAverage}/5
+              </p>
+              <h1 className='tour-detail-name heading__primary'>
+                Tour {tourData.tourname}{' '}
+              </h1>
+              <p className='tour-detail-difficulty heading__secondary '>
+                Dificultad: {tourData.difficulty}
+              </p>
+            </div>
+          </div>
+          <div className='tour-detail-moreinfo'>
+            <p className='tour-detail-description  heading__quaternary '>
+              {tourData.description}
+            </p>
+            <ul className='tour-detail-dates'>
+              <h2 className='heading__tertiary'>Fechas</h2>
+              {tourData.startDates
+                ? tourData.startDates.map((e, i) => <li key={i}>{e}</li>)
+                : null}
+            </ul>
+          </div>
+          <p className='tour-detail-price heading__tertiary'>
+            Desde {tourData.price} € por persona
+          </p>
+          <p className='tour-detail-group heading__tertiary'>
+            Grupos minimo de : {tourData.maxGroupSize} personas
+          </p>
+          <div className='tour-detail-images'>
+            {tourData.images ? (
+              <Carousel>
+                {tourData.images.map((e, i) => (
+                  <img src={e} key={i} className='tour-image' />
+                ))}
+              </Carousel>
+            ) : null}
+          </div>
         </div>
       )}
     </>

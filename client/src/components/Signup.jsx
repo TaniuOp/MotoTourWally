@@ -30,32 +30,42 @@ const Signup = () => {
   };
   return (
     <div>
-      <form onSubmit={handleSubmit} className='form'>
+      <h1 className='heading__tertiary'>Registrate para poder comprar</h1>
+
+      <form onSubmit={handleSubmit} className='form form-auth'>
+        <label className='form-label'>Nombre</label>
+
         <input
           type='text'
-          className='form__name'
+          className='form-input'
           placeholder='Nombre'
           onChange={(e) => setUserName(e.target.value)}
         />
+        <label className='form-label'>Correo</label>
+
         <input
           type='email'
-          className='form__email'
+          className='form-input'
           placeholder='Email'
           onChange={(e) => setEmail(e.target.value)}
         />
+        <label className='form-label'>Contraseña</label>
+
         <input
           type='password'
-          className='form__password'
+          className='form-input'
           placeholder='Contraseña'
           onChange={(e) => setPassword(e.target.value)}
         />
+        <label className='form-label'>Confirma la contraseña</label>
+
         <input
           type='password'
-          className='form__passwordConfirm'
+          className='form-input'
           placeholder='Confirma la contraseña'
           onChange={(e) => setPasswordConfirm(e.target.value)}
         />
-        <input type='submit' className='button' />
+        <input type='submit' className='button button--primary' />
       </form>
     </div>
   );

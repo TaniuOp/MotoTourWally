@@ -2,8 +2,8 @@ form {
   margin: 0 auto;
   max-width: 600px;
   padding: 30px;
-  box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
-  border-radius: 10px;
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -72,4 +72,17 @@ input[type='button']:hover {
 input[type='button'],
 input[type='submit'] {
   -webkit-appearance: none;
+}
+
+.form-telephone {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.form-country-options {
+  max-width: 30%;
+}
+.form-telephone-number {
+  max-width: 60%;
 }

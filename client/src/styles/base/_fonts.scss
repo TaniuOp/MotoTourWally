@@ -25,6 +25,15 @@
   animation: moveInRight 0.7s ease-out;
 }
 
+.heading__quaternary {
+  color: $color-gray-dark;
+  font-size: 2rem;
+  font-weight: 500;
+  margin: 0 0 2rem;
+  letter-spacing: 0.2rem;
+  animation: moveInRight 0.7s ease-out;
+}
+
 /* Responsive breakpoints */
 @media (max-width: $breakpoint-tablet) {
   .heading__primary {

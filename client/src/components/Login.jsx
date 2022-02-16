@@ -38,14 +38,16 @@ const Login = () => {
 
   return (
     <div className='login'>
-      <h1>Entra para ver nuestros Top Tours</h1>{' '}
+      <h1 className='heading__tertiary'>Entra</h1>
       <div className='div_form'>
-        <Form onSubmit={handleSubmit} ref={form} className='loginFormItself'>
-          <div className='form-group'>
-            <label htmlFor='mail'>Email</label>
+        <Form onSubmit={handleSubmit} ref={form} className='form form-auth'>
+          <div className='form-align-group'>
+            <label htmlFor='mail' className='form-label form-auth'>
+              Email
+            </label>
             <Input
               type='text'
-              className='form-control'
+              className='form-input form-auth'
               name='mail'
               placeholder='correo electronico'
               value={mail}
@@ -54,11 +56,13 @@ const Login = () => {
             />
           </div>
 
-          <div className='form-group'>
-            <label htmlFor='password'>Contraseña</label>
+          <div className='form-align-group'>
+            <label htmlFor='password' className='form-label form-auth'>
+              Contraseña
+            </label>
             <Input
               type='password'
-              className='form-control'
+              className='form-input form-auth'
               name='password'
               placeholder='contraseña'
               value={password}
@@ -68,10 +72,12 @@ const Login = () => {
           </div>
 
           <div className='form-group'>
-            <button className='btn'>Acceder</button>
+            <button className='button button--primary'>Acceder</button>
           </div>
 
-          <Link to='/signup'>¿No tienes cuenta? Regístrate</Link>
+          <Link to='/signup' className='link'>
+            ¿No tienes cuenta? Regístrate
+          </Link>
         </Form>
       </div>
     </div>
