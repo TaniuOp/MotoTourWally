@@ -11,6 +11,11 @@ router.post('/signup', authController.signUp); // Register
 router.post('/login', authController.logIn); //Login
 router.post('/forgot-password', authController.forgotPassword); // Forgot password
 router.patch('/reset-password/:token', authController.resetPassword); // Reset password (modify the password)
+router.get(
+  '/profile',
+  authController.protectURL,
+  authController.getUserProfile
+); // Get user profile
 router.patch(
   '/edit-profile-password',
   authController.protectURL,

@@ -29,8 +29,10 @@ const Signup = () => {
     register();
   };
   return (
-    <div>
-      <h1 className='heading__tertiary'>Registrate para poder comprar</h1>
+    <div className='signup'>
+      <h1 className='heading__tertiary'>
+        Registrate y disfruta de nuestras mejores ofertas
+      </h1>
 
       <form onSubmit={handleSubmit} className='form form-auth'>
         <label className='form-label'>Nombre</label>

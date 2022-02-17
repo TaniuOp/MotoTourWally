@@ -1,6 +1,7 @@
 // MODULES
 const express = require('express');
 const app = express();
+const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit'); // Limit IP petitions
@@ -14,15 +15,27 @@ const userRoutes = require('./routes/userRoutes');
 // MIDDLEWARES
 // Set security HTTP headers middleware (always on top)
 app.use(helmet());
+app.use(cookieParser());
 
 // Deelopment logger middleware
 if (process.env.NODE_ENV === 'development') {
+  // Cors middleware
+  const corsOptions = {
+    origin: 'http://localhost:3000',
+    credentials: true, //access-control-allow-credentials:true
+    optionSuccessStatus: 200,
+  };
+  app.use(cors(corsOptions));
   app.use(morgan());
   console.log('App running in development mode');
 }
 
-// Cors middleware
-app.use(cors());
+app.use((req, res, next) => {
+  res.setHeader('Acces-Control-Allow-Origin', '*');
+  res.setHeader('Acces-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
+  res.setHeader('Acces-Contorl-Allow-Methods', 'Content-Type', 'Authorization');
+  next();
+});
 
 // BodyParser middleware
 app.use(express.json());

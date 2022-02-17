@@ -763,6 +763,7 @@ export default function App() {
       <div className='form-align-group'>
         <label className='form-label'>Asunto</label>
         <select name='tour' {...register('tour', { required: true })}>
+          <option value='Info'>Información</option>
           <option value='Suggestion'>Sugerencia</option>
           <option value='Quote'>Cotización</option>
           <option value='Query'>Consulta</option>

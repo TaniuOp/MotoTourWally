@@ -69,13 +69,11 @@ exports.signUp = async (req, res) => {
 exports.logIn = async (req, res) => {
   try {
     const { email, password } = req.body;
-
     // 1. Check if fields are not empty
     if (!email || !password)
       throw new Error('Debes completar todos los campos');
 
     // 2. Verify if email exists and password is correct
-
     const user = await User.findOne({ email }).select('+password'); //We use "select" because this field is hidden from the user schema
 
     // Use the correctPAssword instance / function with 2 parameters (body password send in the form and the user password returned from DB)
@@ -93,8 +91,39 @@ exports.logIn = async (req, res) => {
   }
 };
 
-// Protect routes URL MIDDLEWARE function
+// Get User profile
+exports.getUserProfile = async (req, res) => {
+  let token;
+  try {
+    // if (req.headers.authorization) {
+    if (req) {
+      // token = req.headers.authorization.split(' ')[1];
+      console.log(req.headers);
+    }
+    // // 1. Get token from header
+    // const decoded = await promisify(jwt.verify)(
+    //   token,
+    //   process.env.JWT_MY_SECRET
+    // );
+    // // 2. Check if user exists in DB
+    // const currentUser = await User.findById(decoded.id);
+    // // 3. Get user data
+    // if (currentUser) {
+    //   const user = await User.findById(currentUser);
+    //   res.status(200).json({
+    //     status: 'success',
+    //     data: { user },
+    //   });
+    // }
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err.message,
+    });
+  }
+};
 
+// Protect routes URL MIDDLEWARE function
 exports.protectURL = async (req, res, next) => {
   try {
     // 1. Get user token with Bearer copy
@@ -113,23 +142,19 @@ exports.protectURL = async (req, res, next) => {
       token,
       process.env.JWT_MY_SECRET
     ); //--> Returns a promise so we use a Node util promisify to change it to a async/await
-
     // 3. Check if user still exists in DB (not deleted)
     const currentUser = await User.findById(decoded.id);
     if (!currentUser) {
       throw new Error('Este usuario ya no existe o debe actualizar el Token');
     }
-
     // 4. Check if user changed password with Mongoose instance
     if (currentUser.changePassword(decoded.iat)) {
       throw new Error(
         'Se ha modificado la contraseña recientemente. Debes iniciar sesión'
       );
     }
-
     // 5. Save user to be used globally
     req.user = currentUser;
-
     next();
   } catch (err) {
     res.status(404).json({

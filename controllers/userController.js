@@ -6,7 +6,7 @@ const User = require('../models/userModel');
 // CONTROLLERS (User functions)
 
 // Get all users function
-exports.getAllUsers = async (req, res) => {
+exports.getAllUsers = async (req, res, next) => {
   try {
     const users = await User.find();
     res.status(200).json({
@@ -14,6 +14,7 @@ exports.getAllUsers = async (req, res) => {
       results: users.length,
       data: { users },
     });
+    next();
   } catch (error) {
     res.status(404).json({
       status: 'fail',
