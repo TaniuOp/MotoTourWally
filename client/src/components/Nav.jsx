@@ -1,12 +1,21 @@
 import { NavLink } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 const Nav = () => {
+  const [cookies, setCookie] = useCookies('jwt');
+  console.log(cookies);
   return (
     <div className='nav'>
       <ul>
-        <li>
-          <NavLink to='/login'>Entrar</NavLink>
-        </li>
+        {cookies.jwt ? (
+          <li>
+            <NavLink to='/userprofile'>Profile</NavLink>
+          </li>
+        ) : (
+          <li>
+            <NavLink to='/login'>Entrar</NavLink>
+          </li>
+        )}
         <li>
           <NavLink to='/tourlist'>Nuestros Tour</NavLink>
         </li>

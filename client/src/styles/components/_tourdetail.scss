@@ -39,9 +39,6 @@
   grid-row: 2;
 }
 .tour-detail-difficulty {
-  z-index: 1;
-  grid-column: 2;
-  grid-row: 2;
   text-align: right;
 }
 .tour-detail-dates {
@@ -57,7 +54,7 @@
   align-items: center;
 }
 .tour-detail-difficulty {
-  margin-top: 40%;
+  margin-right: 10rem;
 }
 .tour-detail-moreinfo {
   display: flex;

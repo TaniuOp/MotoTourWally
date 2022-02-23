@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 const Tourcard = ({ tourInfo }) => {
   const { _id, tourname, imageCover, summary, price, ratingsAverage } =
     tourInfo;
-  console.log(tourInfo);
 
   return (
     <Link to={`/tourdetail/${_id}`} className='tour-link'>

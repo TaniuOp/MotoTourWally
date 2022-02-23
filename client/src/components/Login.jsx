@@ -87,13 +87,12 @@ const Login = () => {
             />
           </div>
 
-          <div className='form-group'>
+          <div className='form-group button-container'>
             <button className='button button--primary'>Acceder</button>
+            <Link to='/signup' className='link'>
+              ¿No tienes cuenta? Regístrate
+            </Link>
           </div>
-
-          <Link to='/signup' className='link'>
-            ¿No tienes cuenta? Regístrate
-          </Link>
         </Form>
       </div>
     </div>

@@ -5,6 +5,7 @@ const User = require('../models/userModel');
 const { promisify } = require('util'); //--> To do a promisify (force a Promise to a not async function)
 const sendEmail = require('../utils/email');
 const crypto = require('crypto');
+const verify = promisify(jwt.verify);
 
 // SIGN Auth TOKEN FUNCTION
 // Create Token --> We migrate it on top so we dont repeat the function
@@ -95,26 +96,17 @@ exports.logIn = async (req, res) => {
 exports.getUserProfile = async (req, res) => {
   let token;
   try {
-    // if (req.headers.authorization) {
-    if (req) {
-      // token = req.headers.authorization.split(' ')[1];
-      console.log(req.headers);
-    }
-    // // 1. Get token from header
-    // const decoded = await promisify(jwt.verify)(
-    //   token,
-    //   process.env.JWT_MY_SECRET
-    // );
-    // // 2. Check if user exists in DB
-    // const currentUser = await User.findById(decoded.id);
-    // // 3. Get user data
-    // if (currentUser) {
-    //   const user = await User.findById(currentUser);
-    //   res.status(200).json({
-    //     status: 'success',
-    //     data: { user },
-    //   });
-    // }
+    const cookieJwt = req.cookies;
+    token = cookieJwt.jwt;
+    const decoded = await promisify(jwt.verify)(
+      token,
+      process.env.JWT_MY_SECRET
+    );
+    const currentUser = await User.findById(decoded.id);
+    res.status(200).json({
+      status: 'success',
+      data: { currentUser },
+    });
   } catch (err) {
     res.status(404).json({
       status: 'fail',
@@ -304,11 +296,19 @@ exports.updateCurrentUserPassword = async (req, res) => {
 // Update user data
 exports.updateCurrentUser = async (req, res) => {
   try {
-    // findByIdAndUpdate with id and fields to change. If one of these fields is not updated, it mantains previous value
+    let token;
+    const cookieJwt = req.cookies;
+    token = cookieJwt.jwt;
+    const decoded = await promisify(jwt.verify)(
+      token,
+      process.env.JWT_MY_SECRET
+    ); // findByIdAndUpdate with id and fields to change. If one of these fields is not updated, it mantains previous value
+    console.log(decoded.id);
+    console.log(req.body);
     const user = await User.findByIdAndUpdate(
-      req.user.id,
+      decoded.id,
       {
-        name: req.body.name,
+        username: req.body.username,
         email: req.body.email,
         photo: req.body.photo,
         newsletter: req.body.newsletter,

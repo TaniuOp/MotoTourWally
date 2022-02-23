@@ -67,7 +67,9 @@ const Signup = () => {
           placeholder='Confirma la contraseña'
           onChange={(e) => setPasswordConfirm(e.target.value)}
         />
-        <input type='submit' className='button button--primary' />
+        <div className='form-group button-container'>
+          <input type='submit' className='button button--primary' />
+        </div>
       </form>
     </div>
   );
