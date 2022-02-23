@@ -44,14 +44,11 @@ const Tourdetail = () => {
             />
             <div className='tour-detail-info'>
               <p className='tour-detail-rating heading__secondary'>
-                Valoraxción: {tourData.ratingsAverage}/5
+                Valoración: {tourData.ratingsAverage}/5
               </p>
               <h1 className='tour-detail-name heading__primary'>
                 Tour {tourData.tourname}{' '}
               </h1>
-              <p className='tour-detail-difficulty heading__secondary '>
-                Dificultad: {tourData.difficulty}
-              </p>
             </div>
           </div>
           <div className='tour-detail-moreinfo'>
@@ -65,6 +62,9 @@ const Tourdetail = () => {
                 : null}
             </ul>
           </div>
+          <p className='heading__quaternary tour-detail-difficulty'>
+            Dificultad: {tourData.difficulty}
+          </p>
           <p className='tour-detail-price heading__tertiary'>
             Desde {tourData.price} € por persona
           </p>

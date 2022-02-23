@@ -28,11 +28,10 @@ export default function App() {
       />
       <label className='form-label'>Teléfono</label>
       <div className='form-telephone'>
-        <label htmlFor='country'>País</label>
         <select
           id='country'
           name='country'
-          class='form-country-options'
+          className='form-country-options'
           {...register('countryCode', { required: true })}
         >
           <option value='Elegir' id='AF'>
@@ -763,6 +762,7 @@ export default function App() {
       <div className='form-align-group'>
         <label className='form-label'>Asunto</label>
         <select name='tour' {...register('tour', { required: true })}>
+          <option value='Info'>Información</option>
           <option value='Suggestion'>Sugerencia</option>
           <option value='Quote'>Cotización</option>
           <option value='Query'>Consulta</option>
@@ -797,7 +797,9 @@ export default function App() {
         placeholder='Mensaje'
         className='form-input'
       />
-      <input type='submit' className='button button--primary' />
+      <div className='form-group button-container'>
+        <input type='submit' className='button button--primary' />
+      </div>
     </form>
   );
 }

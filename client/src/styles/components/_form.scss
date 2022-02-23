@@ -4,9 +4,12 @@ form {
   padding: 30px;
   box-shadow: $box-shadow;
   border-radius: $border-radius;
-  display: flex;
+  align-items: stretch;
+  margin-bottom: 4rem;
+  align-content: center;
+  justify-content: space-evenly;
   flex-direction: column;
-  align-items: center;
+  margin-bottom: 4rem;
 }
 
 p.form-group {
@@ -48,6 +51,8 @@ input[type='radio'] {
 select {
   margin-left: 20px;
   height: 20px;
+  border: 1px solid $color-gray-light;
+  border-radius: $border-radius;
 }
 
 .radio-btn-label {
@@ -85,4 +90,13 @@ input[type='submit'] {
 }
 .form-telephone-number {
   max-width: 60%;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: stretch;
 }

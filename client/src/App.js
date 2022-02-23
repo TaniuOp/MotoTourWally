@@ -2,6 +2,7 @@ import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer';
 import { BrowserRouter } from 'react-router-dom';
+import { CookiesProvider } from 'react-cookie';
 
 import './styles/styles.scss';
 
@@ -10,8 +11,10 @@ function App() {
     <>
       <div className='App'>
         <BrowserRouter>
-          <Header />
-          <Main />
+          <CookiesProvider>
+            <Header />
+            <Main />
+          </CookiesProvider>
         </BrowserRouter>
       </div>
       <div className='Footer'>

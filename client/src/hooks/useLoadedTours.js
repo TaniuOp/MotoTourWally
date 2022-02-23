@@ -15,7 +15,6 @@ export const useLoadedTours = () => {
       })
     );
   }, []);
-  console.log(toursData);
 
   return toursData; // --> retorna {data de [tours] y loader: Boolean}
 };

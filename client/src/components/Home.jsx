@@ -10,13 +10,13 @@ const Home = () => {
       <main className='head-Container'>
         <div className='head-Text-Container'>
           <h1 className='heading__primary'> ¡Encuentra el Tour Perfecto! </h1>
-          <p className='heading__secondary'>
+          <p className='heading__secondary home-text'>
             En la moto no hay destino, el destino es el viaje…
           </p>
-          <p className='heading__secondary'>
+          <p className='heading__secondary home-text'>
             4 ruedas transportan un cuerpo, 2 ruedas transportan el alma.
           </p>
-          <p className='heading__secondary'>¡El mundo nos espera!</p>
+          <p className='heading__secondary home-text'>¡El mundo nos espera!</p>
           <Link to='/tourlist' className='button button--secondary'>
             Ver Tours
           </Link>

@@ -5,6 +5,7 @@ const User = require('../models/userModel');
 const { promisify } = require('util'); //--> To do a promisify (force a Promise to a not async function)
 const sendEmail = require('../utils/email');
 const crypto = require('crypto');
+const verify = promisify(jwt.verify);
 
 // SIGN Auth TOKEN FUNCTION
 // Create Token --> We migrate it on top so we dont repeat the function
@@ -24,7 +25,7 @@ const createSendToken = (user, statusCode, res) => {
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
     ),
-    httpOnly: true, //--> allows only read fron the browser
+    httpOnly: false, //--> allows only read fron the browser
   };
   // Conditional for secure protocol
   if (process.env.NODE_ENV === 'production') {
@@ -69,13 +70,11 @@ exports.signUp = async (req, res) => {
 exports.logIn = async (req, res) => {
   try {
     const { email, password } = req.body;
-
     // 1. Check if fields are not empty
     if (!email || !password)
       throw new Error('Debes completar todos los campos');
 
     // 2. Verify if email exists and password is correct
-
     const user = await User.findOne({ email }).select('+password'); //We use "select" because this field is hidden from the user schema
 
     // Use the correctPAssword instance / function with 2 parameters (body password send in the form and the user password returned from DB)
@@ -93,8 +92,30 @@ exports.logIn = async (req, res) => {
   }
 };
 
-// Protect routes URL MIDDLEWARE function
+// Get User profile
+exports.getUserProfile = async (req, res) => {
+  let token;
+  try {
+    const cookieJwt = req.cookies;
+    token = cookieJwt.jwt;
+    const decoded = await promisify(jwt.verify)(
+      token,
+      process.env.JWT_MY_SECRET
+    );
+    const currentUser = await User.findById(decoded.id);
+    res.status(200).json({
+      status: 'success',
+      data: { currentUser },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err.message,
+    });
+  }
+};
 
+// Protect routes URL MIDDLEWARE function
 exports.protectURL = async (req, res, next) => {
   try {
     // 1. Get user token with Bearer copy
@@ -113,23 +134,19 @@ exports.protectURL = async (req, res, next) => {
       token,
       process.env.JWT_MY_SECRET
     ); //--> Returns a promise so we use a Node util promisify to change it to a async/await
-
     // 3. Check if user still exists in DB (not deleted)
     const currentUser = await User.findById(decoded.id);
     if (!currentUser) {
       throw new Error('Este usuario ya no existe o debe actualizar el Token');
     }
-
     // 4. Check if user changed password with Mongoose instance
     if (currentUser.changePassword(decoded.iat)) {
       throw new Error(
         'Se ha modificado la contraseña recientemente. Debes iniciar sesión'
       );
     }
-
     // 5. Save user to be used globally
     req.user = currentUser;
-
     next();
   } catch (err) {
     res.status(404).json({
@@ -279,11 +296,19 @@ exports.updateCurrentUserPassword = async (req, res) => {
 // Update user data
 exports.updateCurrentUser = async (req, res) => {
   try {
-    // findByIdAndUpdate with id and fields to change. If one of these fields is not updated, it mantains previous value
+    let token;
+    const cookieJwt = req.cookies;
+    token = cookieJwt.jwt;
+    const decoded = await promisify(jwt.verify)(
+      token,
+      process.env.JWT_MY_SECRET
+    ); // findByIdAndUpdate with id and fields to change. If one of these fields is not updated, it mantains previous value
+    console.log(decoded.id);
+    console.log(req.body);
     const user = await User.findByIdAndUpdate(
-      req.user.id,
+      decoded.id,
       {
-        name: req.body.name,
+        username: req.body.username,
         email: req.body.email,
         photo: req.body.photo,
         newsletter: req.body.newsletter,

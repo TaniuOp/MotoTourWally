@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 const Tourcard = ({ tourInfo }) => {
   const { _id, tourname, imageCover, summary, price, ratingsAverage } =
     tourInfo;
-  console.log(tourInfo);
 
   return (
     <Link to={`/tourdetail/${_id}`} className='tour-link'>
@@ -19,10 +18,9 @@ const Tourcard = ({ tourInfo }) => {
           />
         )}
         <p className='tourDescription'>{summary}</p>
-        <p className='tourReview'>Valoración: {ratingsAverage}</p>
-
         <p className='tourPrice'>Desde {price} € por persona</p>
-      </div>{' '}
+        <p className='tourReview'>Valoración: {ratingsAverage}</p>
+      </div>
     </Link>
   );
 };

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -29,8 +29,10 @@ const Signup = () => {
     register();
   };
   return (
-    <div>
-      <h1 className='heading__tertiary'>Registrate para poder comprar</h1>
+    <div className='signup'>
+      <h1 className='heading__tertiary'>
+        Registrate y disfruta de nuestras mejores ofertas
+      </h1>
 
       <form onSubmit={handleSubmit} className='form form-auth'>
         <label className='form-label'>Nombre</label>
@@ -65,7 +67,9 @@ const Signup = () => {
           placeholder='Confirma la contraseña'
           onChange={(e) => setPasswordConfirm(e.target.value)}
         />
-        <input type='submit' className='button button--primary' />
+        <div className='form-group button-container'>
+          <input type='submit' className='button button--primary' />
+        </div>
       </form>
     </div>
   );
