@@ -3,8 +3,10 @@ import Main from './components/Main';
 import Footer from './components/Footer';
 import { BrowserRouter } from 'react-router-dom';
 import { CookiesProvider } from 'react-cookie';
-
+import LogRocket from 'logrocket';
 import './styles/styles.scss';
+
+LogRocket.init('q4nfr6/mototour');
 
 function App() {
   return (
