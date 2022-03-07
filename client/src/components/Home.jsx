@@ -1,5 +1,6 @@
 import Contact from './Contact';
 import Toptours from './Toptours';
+import Faqs from './Faqs';
 
 import { Link } from 'react-router-dom';
 
@@ -23,15 +24,11 @@ const Home = () => {
         </div>
       </main>
       {/* TOP TOURS  */}
-      <article className='top-Tours-Container'>
-        <h3 className='heading__tertiary'>Top Tours</h3>
-        <Toptours />
-      </article>
+      <Toptours />
+      {/* QUESTIONS  */}
+      <Faqs />
       {/* CONTACT */}
-      <section className='contact-Container'>
-        <h3 className='heading__tertiary'>Contacta con nosotros</h3>
-        <Contact />
-      </section>
+      <Contact />
     </div>
   );
 };
