@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getTours, getTopTours } from '../helpers/getTours';
+import { getTours } from '../helpers/getTours';
 
 export const useLoadedTours = () => {
   const [toursData, setToursData] = useState({
