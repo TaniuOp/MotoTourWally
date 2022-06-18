@@ -1,0 +1,11 @@
+@mixin form {
+  display: flex;
+  align-content: space-between;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+@mixin boxes {
+  $box-shadow: $box-shadow;
+  $border-radius: $border-radius;
+}

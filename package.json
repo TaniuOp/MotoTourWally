@@ -1,0 +1,49 @@
+{
+  "name": "mototourwally",
+  "version": "1.0.0",
+  "description": "MERN project for Moto tours",
+  "main": "index.js",
+  "engines": {
+    "node": "^16.13.0",
+    "npm": "8.1.4"
+  },
+  "scripts": {
+    "server": "node server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "run-dev": "set NODE_ENV=development && nodemon server.js",
+    "prod": "NODE_ENV=production nodemon server.js",
+    "start": "node backend/server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TaniuOp/MotoTourWally.git"
+  },
+  "author": "TaniuOp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TaniuOp/MotoTourWally/issues"
+  },
+  "homepage": "https://github.com/TaniuOp/MotoTourWally#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.17.2",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^6.2.1",
+    "helmet": "^5.0.2",
+    "hpp": "^0.2.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.1.8",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.7.2",
+    "validator": "^13.7.0",
+    "xss-clean": "^0.1.1"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^15.0.1"
+  }
+}

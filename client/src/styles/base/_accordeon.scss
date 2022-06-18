@@ -1,0 +1,44 @@
+.ui.styled.accordion,
+.ui.styled.accordion .accordion {
+  border-radius: 0.28571429rem;
+  background: #fff;
+  box-shadow: $box-shadow;
+  width: 600px;
+  max-width: 100%;
+  box-sizing: inherit;
+}
+
+.ui.styled.accordion > .title:first-child {
+  border-top: none;
+}
+
+.ui.styled.accordion .accordion .title,
+.ui.styled.accordion .title {
+  margin: 0 0 0 2em;
+  padding: 0.75em 1em;
+  font-weight: 700;
+  border-top: 1px solid rgba(34, 36, 38, 0.15);
+  transition: background 0.1s ease, color 0.1s ease;
+  transition: background 0.1s ease, color 0.1s ease;
+}
+
+.ui.accordion .title:not(.ui) {
+  padding: 1.5em 0;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.content {
+  margin: 0;
+  padding: 0.5em 1em 1.5em;
+}
+
+.ui.accordion .title ~ .content {
+  display: none;
+  box-sizing: inherit;
+  margin: 0 0 0 2em;
+}
+
+.ui.accordion .active.content {
+  display: block;
+}

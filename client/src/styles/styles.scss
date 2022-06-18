@@ -1,0 +1,29 @@
+// utils
+@import './utils/variables';
+@import './utils/mixins';
+
+// components
+@import './components/header';
+@import './components/nav';
+@import './components/footer';
+@import './components/tourcard';
+@import './components/home';
+@import './components/about';
+@import './components/auth';
+@import './components/button';
+@import './components/form';
+@import './components/tourdetail';
+@import './components/profile';
+
+// views
+@import './views/app';
+
+// base
+@import './base/base';
+@import './base/fonts';
+@import './base/animations';
+@import './base/loader';
+@import './base/accordeon';
+
+// mixins
+@import './utils/mixins.scss';

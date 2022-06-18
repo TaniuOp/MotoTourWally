@@ -1,0 +1,78 @@
+.tour-main-container {
+}
+
+.tour-head-container {
+}
+
+.tour-detail-img {
+  position: relative;
+  height: 60vh;
+  max-height: 600px;
+  object-fit: cover;
+  width: 100%;
+  opacity: 0.8;
+}
+
+.tour-detail-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  position: absolute;
+  height: 60vh;
+  max-height: 37rem;
+  left: 3rem;
+  right: 0px;
+  top: 20rem;
+  width: 90%;
+  text-shadow: 1px $color-black;
+}
+
+.tour-detail-rating {
+  z-index: 1;
+  grid-column: 2;
+  grid-row: 1;
+  text-align: right;
+}
+.tour-detail-name {
+  z-index: 1;
+  grid-column: 1;
+  grid-row: 2;
+}
+.tour-detail-difficulty {
+  text-align: right;
+}
+.tour-detail-dates {
+  display: flex;
+  flex-direction: column;
+  box-shadow: $box-shadow;
+  border-radius: 10px;
+  margin: 5%;
+  padding: 4%;
+  width: 20%;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+.tour-detail-difficulty {
+  margin-right: 10rem;
+}
+.tour-detail-moreinfo {
+  display: flex;
+  margin-top: 3%;
+}
+.tour-detail-description {
+  line-height: 1.6;
+  margin-top: 4%;
+}
+
+.tour-detail-images {
+  display: flex;
+  align-self: center;
+}
+
+.tour-image {
+  align-self: center;
+  max-height: 400px;
+  margin: 5% auto 5% 10%;
+  object-fit: cover;
+}

@@ -1,0 +1,74 @@
+.div_form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-auth {
+  margin-top: 20px;
+  width: 30%;
+}
+
+.form-control {
+  border-radius: 4px;
+  padding: 6px;
+  color: $color-gray-dark;
+  background-color: $color-gray-dark;
+}
+
+.btn {
+  background-color: $color-primary-dark;
+  color: $color-gray-dark;
+  width: 20%;
+  height: 2.5em;
+  border-radius: 8px;
+  margin-top: 50px;
+  margin-bottom: 40px;
+}
+
+.idinfo {
+  font-size: 0.6em;
+}
+
+.logoForm {
+  width: 178.4px;
+  height: 40px;
+  left: 871px;
+  top: 246px;
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-top: 10px;
+}
+
+.link {
+  margin-top: 10%;
+  border-radius: 10%;
+  padding: 1%;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  align-content: stretch;
+  flex-wrap: wrap;
+}
+
+.login h1 {
+  text-align: center;
+}
+
+.signup {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  align-content: stretch;
+  flex-wrap: wrap;
+}
+
+.signup h1 {
+  text-align: center;
+}
